@@ -13,11 +13,13 @@ public class UsuariosDtos {
 
 	String dni_usuario = "aaaaa";
 
-	String telefono_usuario ;
+	String telefono_usuario = "aaaaa";
 
 	String email_usuario = "aaaaa";
 	
 	String nombre_usuarioString = "aaaaa";
+	
+	String direccion_usuario = "aaaaa";
 	
 	public UsuariosDtos(long id_usuarios, String nombre_usuarioString, String apellidos_usuarioString, String dni_usuario,
 			String telefono_usuario, String email_usuario) {
@@ -28,6 +30,7 @@ public class UsuariosDtos {
 		this.dni_usuario = dni_usuario;
 		this.telefono_usuario = telefono_usuario;
 		this.email_usuario = email_usuario;
+		
 	}
 
 

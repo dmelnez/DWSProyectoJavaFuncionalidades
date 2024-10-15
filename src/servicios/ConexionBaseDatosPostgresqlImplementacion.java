@@ -54,7 +54,7 @@ private String[] configuracionConexion() {
 		
 		Properties propiedadesConexion = new Properties();
 		try {
-			propiedadesConexion.load(new FileInputStream(new File("C:\\Users\\Trabajo\\dws-workspace\\edu.jdbc.crud\\src\\edu\\jdbc\\crud\\util\\conexion_postgresql.properties")));
+			propiedadesConexion.load(new FileInputStream(new File("C:\\Users\\dmelnez\\Desktop\\Eclipse Proyectos\\edu.redSocialMoteros\\conexion_postgresql.properties")));
 			user = propiedadesConexion.getProperty("user");
 			pass = propiedadesConexion.getProperty("pass");
 			port = propiedadesConexion.getProperty("port");

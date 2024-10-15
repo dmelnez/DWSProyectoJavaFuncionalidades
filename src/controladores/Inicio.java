@@ -8,6 +8,12 @@ import java.util.List;
 import conexionBaseDatos.*;
 import dtos.ClubsDtos;
 import dtos.UsuariosDtos;
+import edu.jdbc.conexionPostgresql.servicios.ConexionPostgresqlImplementacion;
+import edu.jdbc.conexionPostgresql.servicios.ConexionPostgresqlInterfaz;
+import edu.jdbc.conexionPostgresql.servicios.ConsultasPostgresqlImplementacion;
+import edu.jdbc.conexionPostgresql.servicios.ConsultasPostgresqlInterfaz;
+import servicios.ConexionBaseDatosPostgresqlImplementacion;
+import servicios.ConexionBaseDatosPostgresqlInterfaz;
 import servicios.FicheroImplementacion;
 import servicios.FicheroInterfaz;
 import servicios.MenuImplementacion;
@@ -31,24 +37,19 @@ public class Inicio {
 		
 		MenuInterfaz me = new MenuImplementacion();
 
-				try {
-
-					Connection con = ConexionBaseDatos.crearConexion();
-
-				} catch (ClassNotFoundException e) {
-
-					// TODO Auto-generated catch block
-
-					e.printStackTrace();
-
-				} catch (SQLException e) {
-
-					// TODO Auto-generated catch block
-
-					e.printStackTrace();
-
-				}
-				
+		ConexionBaseDatosPostgresqlInterfaz cpi = new ConexionBaseDatosPostgresqlImplementacion();
+		//ConsultasPostgresqlInterfaz consultaspi = new ConsultasPostgresqlImplementacion();
+		
+		try {
+			Connection conexion = cpi.generaConexion();
+			
+			if(conexion != null) {
+				System.out.println("CONEXION ESTABLECIDA");
+				}	
+			
+		} catch (Exception e) {
+			System.err.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
+		}
 			
 		boolean esCerrar = false;
 		String mensajeLog = "aaaaa";
