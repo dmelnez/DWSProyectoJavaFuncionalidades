@@ -8,10 +8,7 @@ import java.util.List;
 import conexionBaseDatos.*;
 import dtos.ClubsDtos;
 import dtos.UsuariosDtos;
-import edu.jdbc.conexionPostgresql.servicios.ConexionPostgresqlImplementacion;
-import edu.jdbc.conexionPostgresql.servicios.ConexionPostgresqlInterfaz;
-import edu.jdbc.conexionPostgresql.servicios.ConsultasPostgresqlImplementacion;
-import edu.jdbc.conexionPostgresql.servicios.ConsultasPostgresqlInterfaz;
+
 import servicios.ConexionBaseDatosPostgresqlImplementacion;
 import servicios.ConexionBaseDatosPostgresqlInterfaz;
 import servicios.FicheroImplementacion;
@@ -22,6 +19,8 @@ import servicios.OperativaClubImplementacion;
 import servicios.OperativaClubInterfaz;
 import servicios.OperativaUsuarioImplementacion;
 import servicios.OperativaUsuarioInterfaz;
+import servicios.QuerysOperativaImplementacion;
+import servicios.QuerysOperativaInterfaz;
 
 public class Inicio {
 
@@ -34,6 +33,7 @@ public class Inicio {
 		OperativaUsuarioInterfaz opUsu = new OperativaUsuarioImplementacion();
 		OperativaClubInterfaz opClub = new OperativaClubImplementacion();
 		FicheroInterfaz fi = new FicheroImplementacion();
+		QuerysOperativaInterfaz qy = new QuerysOperativaImplementacion();
 		
 		MenuInterfaz me = new MenuImplementacion();
 
@@ -45,7 +45,8 @@ public class Inicio {
 			
 			if(conexion != null) {
 				System.out.println("CONEXION ESTABLECIDA");
-				}	
+				}
+			
 			
 		} catch (Exception e) {
 			System.err.println("[ERROR-Main] Se ha producido un error al ejecutar la aplicación: " + e);
@@ -53,6 +54,8 @@ public class Inicio {
 			
 		boolean esCerrar = false;
 		String mensajeLog = "aaaaa";
+		
+		
 		
 		try {
 			

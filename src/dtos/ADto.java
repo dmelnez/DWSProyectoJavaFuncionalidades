@@ -20,7 +20,8 @@ public ArrayList<UsuariosDtos> resultsUsuario(ResultSet resultadoConsulta){
 						resultadoConsulta.getString("apellidos_usuarioo"),
 						resultadoConsulta.getString("dni_usuario"),
 						resultadoConsulta.getString("email_usuario"),
-						resultadoConsulta.getString("telefono_usario"))
+						resultadoConsulta.getString("telefono_usario"),
+						resultadoConsulta.getString("direccion_usuario"))
 						//resultadoConsulta.getString("direccion_usuario"))
 						);
 			}

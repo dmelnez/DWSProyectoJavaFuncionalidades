@@ -6,8 +6,9 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import dtos.ADto;
 import dtos.UsuariosDtos;
-import edu.jdbc.conexionPostgresql.util.ADto;
+//import edu.jdbc.conexionPostgresql.util.ADto;
 import java.sql.Connection;
 
 
@@ -29,10 +30,10 @@ public ArrayList<UsuariosDtos> insertarusuario(Connection conexionGenerada) {
 			//Se abre una declaración
 			declaracionSQL = conexionGenerada.createStatement();
 			//Se define la consulta de la declaración y se ejecuta
-			resultadoConsulta = declaracionSQL.executeQuery("SELECT * FROM \"gbp_almacen\".\"gbp_alm_cat_libros\"");
+			resultadoConsulta = declaracionSQL.executeQuery("SELECT * FROM \"sch_moteros\".\"Usuarios\"");
 		    
 			//Llamada a la conversión a dtoAlumno
-			listaUsuario = adto.resultsALibrosDto(resultadoConsulta);
+			listaUsuario = adto.resultsUsuario(resultadoConsulta);
 			int i = listaUsuario.size();
 			System.out.println("[INFORMACIÓN-ConsultasPostgresqlImplementacion-seleccionaTodosLibros] Número libros: "+i);
 			

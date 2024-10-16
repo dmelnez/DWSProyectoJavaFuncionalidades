@@ -1,5 +1,10 @@
 package servicios;
 
-public interface QuerysOperativaInterfaz {
+import java.sql.Connection;
+import java.util.ArrayList;
 
+import dtos.UsuariosDtos;
+
+public interface QuerysOperativaInterfaz {
+	public ArrayList<UsuariosDtos> insertarusuario(Connection conexionGenerada);
 }

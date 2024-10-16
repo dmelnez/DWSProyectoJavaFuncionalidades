@@ -18,11 +18,11 @@ public class UsuariosDtos {
 	String email_usuario = "aaaaa";
 	
 	String nombre_usuarioString = "aaaaa";
-	
+
 	String direccion_usuario = "aaaaa";
 	
 	public UsuariosDtos(long id_usuarios, String nombre_usuarioString, String apellidos_usuarioString, String dni_usuario,
-			String telefono_usuario, String email_usuario) {
+			String telefono_usuario, String email_usuario, String direccion_usuario) {
 		super();
 		this.id_usuarios = id_usuarios;
 		this.nombre_usuarioString = nombre_usuarioString;
@@ -30,6 +30,7 @@ public class UsuariosDtos {
 		this.dni_usuario = dni_usuario;
 		this.telefono_usuario = telefono_usuario;
 		this.email_usuario = email_usuario;
+		this.direccion_usuario = direccion_usuario;
 		
 	}
 
@@ -109,5 +110,17 @@ public class UsuariosDtos {
 	public void setNombre_usuarioString(String nombre_usuarioString) {
 		this.nombre_usuarioString = nombre_usuarioString;
 	}
+	
+	
+	public String getDireccion_usuario() {
+		return direccion_usuario;
+	}
+
+
+
+	public void setDireccion_usuario(String direccion_usuario) {
+		this.direccion_usuario = direccion_usuario;
+	}
+
 
 }
