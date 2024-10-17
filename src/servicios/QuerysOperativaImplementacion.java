@@ -97,7 +97,7 @@ public ArrayList<Long> seleccionIdUsuarios(Connection conexionGenerada) {
 	ArrayList<Long> listaIdUsuarios = new ArrayList<>();
 	
 	
-try {
+	try {
 		
 		//Se abre una declaración
 		declaracionSQL = conexionGenerada.createStatement();
@@ -131,7 +131,12 @@ try {
 	
 }
 
-
+public void modificarUsuario(Connection conexionGenerada, String dniUsuario, String campoAModificar){
+	
+	
+	
+	
+}
 
 ///////////////////////////////////////////////////////////////////////////////////
 

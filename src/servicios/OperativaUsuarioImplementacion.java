@@ -145,16 +145,6 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 		
 		qy.eliminarUsuario(conexion, dniAEliminar);
 		
-		/*
-		for (UsuariosDtos usuariosDtos : listaUsuario) {
-			if(usuariosDtos.getDni_usuario().equals(dniAEliminar)) {
-				
-				listaUsuario.remove(usuariosDtos);
-				System.out.println("Se ha elimina el usuario");
-				
-			}
-		}*/
-		
 	}
 	
 	
@@ -202,11 +192,9 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 				}
 				
 			}
+			
 		}
-		
-		
-		
-		
+			
 	}
 	
 	

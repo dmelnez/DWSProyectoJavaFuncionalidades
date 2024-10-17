@@ -62,3 +62,9 @@ Seleccion -> Baja nuevo club.
 Seleccion -> Baja nuevo club.
 Seleccion -> Baja nuevo club.
 Seleccion -> Baja nuevo club.
+Seleccion -> Baja nuevo club.
+Seleccion -> Baja nuevo club.
+Seleccion -> Alta nuevo club.
+Seleccion -> Baja nuevo club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Baja nuevo usuario.
