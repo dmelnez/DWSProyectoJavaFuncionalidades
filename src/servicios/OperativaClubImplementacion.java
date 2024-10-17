@@ -1,5 +1,7 @@
 package servicios;
 
+import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Iterator;
 //import java.util.Iterator;
 import java.util.List;
@@ -12,14 +14,15 @@ import dtos.UsuariosDtos;
 public class OperativaClubImplementacion implements OperativaClubInterfaz {
 
 	Scanner sc = new Scanner(System.in);
+	QuerysOperativaInterfaz qy = new QuerysOperativaImplementacion();
 	
-	public void altaClub(List<ClubsDtos>listaClubs) {
+	public void altaClub(List<ClubsDtos>listaClubs, Connection conexionGenerada) {
 		
 		ClubsDtos nuevoClub = new ClubsDtos();
 		
 		// Metodo encargado de la generacion de un id autonumerico.
 		
-		nuevoClub.setId(idIncremental(listaClubs));
+		nuevoClub.setId(idIncremental(conexionGenerada));
 		
 		//////////////////////////////////////////////////////////////////////////////
 		
@@ -53,7 +56,7 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 		
 		System.out.println("Alias club: ");
 		String aliasClub = sc.next();
-		
+		nuevoClub.setAliasClub(aliasClub);
 		for (ClubsDtos club : listaClubs) {
 			if(club.getAliasClub().equals(aliasClub)) {
 				System.err.println("[ALERTA] -> El alias ya existe.");
@@ -61,9 +64,9 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 			}
 		}
 		
+		qy.insertClubsAlta(conexionGenerada, nuevoClub);
+		
 		nuevoClub.setAliasClub(aliasClub);
-		
-		
 		
 		listaClubs.add(nuevoClub);
 		
@@ -78,38 +81,46 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 	}
 	
 	
-	private long idIncremental(List<ClubsDtos>listaClubs) {
+	private long idIncremental(Connection conexionGenerada) {
+		
+		
+		List<Long>listaIdClubs = new ArrayList<Long>();
+		listaIdClubs = qy.seleccionIdClubs(conexionGenerada);
 		
 		long id = 0;
 		
-		int tamanioLista = listaClubs.size();
+		int tamanioLista = listaIdClubs.size();
 		
 		if(tamanioLista == 0) {
 			id = 1;
 		}
 		
 		else {
-			id = listaClubs.get(tamanioLista - 1).getId() + 1;
+			id = listaIdClubs.get(tamanioLista - 1) + 1;
 		}
+		
+		System.out.println(id);
 		
 		return id;
 	}
 	
 
-	public void bajaClub(List<ClubsDtos>listaClubs) {
+	public void bajaClub(List<ClubsDtos>listaClubs, Connection conexion) {
 		
 		System.out.println("Alias club: ");
 		String aliasClub = sc.next();
-		
+		qy.eliminarClub(conexion, aliasClub);
 		try {
-			for (ClubsDtos club : listaClubs) {
+			
+			
+			/*for (ClubsDtos club : listaClubs) {
 				if(club.getAliasClub().equals(aliasClub)) {
 					
 					listaClubs.remove(club);
 					System.out.println("Se ha elimina el club");
 					
 				}
-			}
+			}*/
 		} catch (Exception e) {
 			// TODO: handle exception
 		}

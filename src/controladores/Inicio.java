@@ -45,6 +45,10 @@ public class Inicio {
 			
 			if(conexion != null) {
 				System.out.println("CONEXION ESTABLECIDA");
+				//qy.insertarusuario(conexion);
+				//qy.listaTodosUsuarios(conexion, listaUsuarios);
+				//qy.listaTodosClubs(conexion, listaClubs);
+				qy.seleccionIdUsuarios(conexion);
 				}
 			
 			
@@ -58,6 +62,7 @@ public class Inicio {
 		
 		
 		try {
+			Connection conexion = cpi.generaConexion();
 			
 			do {
 				int selecionMenu = me.menuInicial();
@@ -72,25 +77,25 @@ public class Inicio {
 					System.out.println("Se dara de alta un nuevo usuario");
 					mensajeLog = "Seleccion -> Alta nuevo usuario.";					
 					fi.ficheroLog(mensajeLog);
-					opUsu.altaUsuario(listaUsuarios);
+					opUsu.altaUsuario(listaUsuarios, conexion);
 					break;
 				case 2:
 					System.out.println("Se dara de alta un nuevo club.");
 					mensajeLog = "Seleccion -> Alta nuevo club.";
 					fi.ficheroLog(mensajeLog);
-					opClub.altaClub(listaClubs);
+					opClub.altaClub(listaClubs, conexion);
 					break;
 				case 3:
 					System.out.println("Baja club.");
 					mensajeLog = "Seleccion -> Baja nuevo club.";
 					fi.ficheroLog(mensajeLog);
-					opClub.bajaClub(listaClubs);
+					opClub.bajaClub(listaClubs, conexion);
 					break;
 				case 4:
 					System.out.println("Baja usuario.");
 					mensajeLog = "Seleccion -> Baja nuevo usuario.";
 					fi.ficheroLog(mensajeLog);
-					opUsu.bajaUsuario(listaUsuarios);
+					opUsu.bajaUsuario(listaUsuarios, conexion);
 					break;
 				case 5:
 					System.out.println("Modificacion club.");

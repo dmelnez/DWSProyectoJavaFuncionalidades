@@ -3,6 +3,7 @@ package dtos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
 import java.sql.ResultSet;
 
 public class ADto {
@@ -27,6 +28,7 @@ public ArrayList<UsuariosDtos> resultsUsuario(ResultSet resultadoConsulta){
 			}
 			
 			int i = listaUsuarios.size();
+			
 			System.out.println("[INFORMACIÓN-ADto-resultsALibrosDto] Numero de usuarios: "+i);
 			
 		} catch (SQLException e) {
@@ -36,10 +38,40 @@ public ArrayList<UsuariosDtos> resultsUsuario(ResultSet resultadoConsulta){
 		return listaUsuarios;
 		
 	}
-	
-	public void resultsAClubs() {
+	/*
+	public void listaTodosUsuarios(ResultSet resultadoConsulta, List<UsuariosDtos>listaUsuarios) {
+		
+		
+		try {
+			while (resultadoConsulta.next()) {
+				
+				listaUsuarios.add(new UsuariosDtos(resultadoConsulta.getLong("id"),
+						resultadoConsulta.getString("nombre_usuario"),
+						resultadoConsulta.getString("apellidos_usuarioo"),
+						resultadoConsulta.getString("dni_usuario"),
+						resultadoConsulta.getString("email_usuario"),
+						resultadoConsulta.getString("telefono_usuario"),
+						resultadoConsulta.getString("direccion_usuario"))
+						//resultadoConsulta.getString("direccion_usuario"))
+						);
+			}
+			
+			int i = listaUsuarios.size();
+			
+			System.out.println("[INFORMACIÓN-ADto-resultsALibrosDto] Numero de usuarios: "+i);
+			
+		} catch (SQLException e) {
+			System.err.println("[ERROR-ADto-resultsALibrosDto] Error al pasar el result set a lista de LibroDto" + e);
+		}
+		
 		
 	}
+	*/
+
+	
+	
+	
+	
 	
 	
 }

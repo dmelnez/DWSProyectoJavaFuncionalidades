@@ -1,8 +1,9 @@
 package servicios;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
+import java.sql.Connection;
 import dtos.UsuariosDtos;
 
 public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz {
@@ -10,12 +11,14 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 	
 	MenuInterfaz me = new MenuImplementacion();
 	Scanner sc = new Scanner(System.in);
+	QuerysOperativaInterfaz qy = new QuerysOperativaImplementacion();
 
-	public void altaUsuario(List<UsuariosDtos>listaUsuarios) {
+	public void altaUsuario(List<UsuariosDtos>listaUsuarios, Connection conexionGenerada) {
 		
+	
 		UsuariosDtos nuevoUsuario = new UsuariosDtos();
 		
-		nuevoUsuario.setId_usuarios(idIncremental(listaUsuarios));
+		nuevoUsuario.setId_usuarios(idIncremental(conexionGenerada));
 		
 		System.out.println("Nombre:");
 		nuevoUsuario.setNombre_usuarioString(sc.next());
@@ -28,6 +31,9 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 		
 		nuevoUsuario.setApellidos_usuarioString(primerApellido + " " + segundoApellido);
 		
+		System.out.println("Direccion:");
+		String direccionUsuario = sc.next();
+		nuevoUsuario.setDireccion_usuario(direccionUsuario);
 		
 		// Comprobar dni
 		boolean esValidado = false;
@@ -57,6 +63,8 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 		System.out.println("Email:");
 		nuevoUsuario.setEmail_usuario(sc.next());
 		
+		qy.insertUsuariosAlta(conexionGenerada, nuevoUsuario);
+		
 		listaUsuarios.add(nuevoUsuario);
 		
 		for (var usuario : listaUsuarios) {
@@ -71,19 +79,25 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 		
 	}
 	
-	private long idIncremental(List<UsuariosDtos>listaUsuarios) {
+	
+	private long idIncremental(Connection conexionGenerada) {
+		
+		List<Long>listaIdUsuarios = new ArrayList<Long>();
+		listaIdUsuarios = qy.seleccionIdUsuarios(conexionGenerada);
 		
 		long id = 0;
 		
-		int tamanioLista = listaUsuarios.size();
+		int tamanioLista = listaIdUsuarios.size();
 		
 		if(tamanioLista == 0) {
 			id = 1;
 		}
 		
 		else {
-			id = listaUsuarios.get(tamanioLista - 1).getId_usuarios() + 1;
+			id = listaIdUsuarios.get(tamanioLista - 1) + 1;
 		}
+		
+		System.out.println(id);
 		
 		return id;
 	}
@@ -124,11 +138,14 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 	
 	///////////////////////////////////////////////////////////////////////////////////
 	
-	public void bajaUsuario(List<UsuariosDtos>listaUsuario) {
+	public void bajaUsuario(List<UsuariosDtos>listaUsuario, Connection conexion) {
 		
 		System.out.println("DNI: ");
 		String dniAEliminar = sc.next();
 		
+		qy.eliminarUsuario(conexion, dniAEliminar);
+		
+		/*
 		for (UsuariosDtos usuariosDtos : listaUsuario) {
 			if(usuariosDtos.getDni_usuario().equals(dniAEliminar)) {
 				
@@ -136,7 +153,7 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 				System.out.println("Se ha elimina el usuario");
 				
 			}
-		}
+		}*/
 		
 	}
 	
