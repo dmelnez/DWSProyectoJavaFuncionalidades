@@ -35,7 +35,7 @@ public interface QuerysOperativaInterfaz {
 	public void eliminarUsuario(Connection conexionGenerada, String dniAElimar);
 	
 	
-	public void modificarUsuario(Connection conexionGenerada, String dniUsuario, String campoAModificar);
+	public void modificarUsuario(Connection conexionGenerada, String nuevoValor, String campoAModificar, String dniUsuario);
 
 	
 	/**

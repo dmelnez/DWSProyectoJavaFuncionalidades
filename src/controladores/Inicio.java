@@ -48,7 +48,7 @@ public class Inicio {
 				//qy.insertarusuario(conexion);
 				//qy.listaTodosUsuarios(conexion, listaUsuarios);
 				//qy.listaTodosClubs(conexion, listaClubs);
-				qy.seleccionIdUsuarios(conexion);
+				//qy.seleccionIdUsuarios(conexion);
 				}
 			
 			
@@ -107,7 +107,7 @@ public class Inicio {
 					System.out.println("Modificacion usuario.");
 					mensajeLog = "Seleccion -> Modificacion club.";
 					fi.ficheroLog(mensajeLog);
-					opUsu.modDatosUsu(listaUsuarios);
+					opUsu.modDatosUsu(listaUsuarios, conexion);
 					break;
 				default:
 					System.err.println("[ALERTA] -> Seleccion no valida.");

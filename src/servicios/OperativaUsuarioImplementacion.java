@@ -148,50 +148,61 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 	}
 	
 	
-	public void modDatosUsu(List<UsuariosDtos>listaUsuarios) {
+	public void modDatosUsu(List<UsuariosDtos>listaUsuarios, Connection conexionGenerada) {
 				
 		System.out.println("DNI: ");
 		String dniUsu = sc.next();
 		
-		for (UsuariosDtos usuarios : listaUsuarios) {
-			if (usuarios.getDni_usuario().equals(dniUsu)) {
-				
-				int seleccionUsu = me.menuModUsuario();
-				
-				switch(seleccionUsu) {
-				
-				case 0:
-					System.out.print("Menu Inicial");
-					break;
-				case 1:
-					System.out.print("Nombre (Nuevo)");
-					usuarios.setNombre_usuarioString(sc.next());
-					break;
-				case 2:
-					System.out.print("Apellidos (Nuevo)");
-					String primerApellido = sc.next();
-					System.out.print("Segundo (Nuevo)");
-					String segunApellido = sc.next();				
-					usuarios.setApellidos_usuarioString(primerApellido + " " + segunApellido);
-					break;
-				case 3:
-					System.out.print("DNI (Nuevo)");
-					usuarios.setDni_usuario(sc.next());
-					break;
-				case 4:
-					System.out.print("Email (Nuevo)");
-					usuarios.setEmail_usuario(sc.next());
-					break;
-				case 5:
-					System.out.print("Telefono (Nuevo)");
-					break;
-				default:
-					System.err.println("[ALERTA] -> Seleccion no valida.");
-					break;
-				
-				}
-				
-			}
+
+		int seleccionUsu = me.menuModUsuario();
+
+		String campoAModificar;
+
+		switch(seleccionUsu) {
+		    case 0:
+		        System.out.print("Menu Inicial");
+		        break;
+		    case 1:
+		        campoAModificar = "nombre_usuario"; // Sin punto y coma
+		        System.out.print("Nombre (Nuevo): ");
+		        String nombreNuevo = sc.next();
+		        
+		        qy.modificarUsuario(conexionGenerada, nombreNuevo, campoAModificar, dniUsu);
+		        break;
+		    case 2:
+		        campoAModificar = "apellidos_usuario"; // Sin punto y coma
+		        System.out.print("Apellidos (Nuevo): ");
+		        String primerApellido = sc.next();
+		        System.out.print("Segundo (Nuevo): ");
+		        String segundoApellido = sc.next();   
+		        
+		        String apellidoCompletoString = primerApellido + " " + segundoApellido;
+		        
+		        qy.modificarUsuario(conexionGenerada, apellidoCompletoString, campoAModificar, dniUsu);
+		        break;
+		    case 3:
+		        campoAModificar = "dni_usuario"; // Sin punto y coma
+		        System.out.print("DNI (Nuevo): ");
+		        String dniNuevo = sc.next();
+		        qy.modificarUsuario(conexionGenerada, dniNuevo, campoAModificar, dniUsu);
+		        break;
+		    case 4:
+		        campoAModificar = "email_usuario"; // Sin punto y coma
+		        System.out.print("Email (Nuevo): ");
+		        String emailNuevo = sc.next();
+		        qy.modificarUsuario(conexionGenerada, emailNuevo, campoAModificar, dniUsu);
+		        break;
+		    case 5:
+		        campoAModificar = "telefono_usuario"; // Sin punto y coma
+		        System.out.print("Teléfono (Nuevo): ");
+		        String telefonoNuevo = sc.next();
+		        qy.modificarUsuario(conexionGenerada, telefonoNuevo, campoAModificar, dniUsu);
+		        break;
+		    default:
+		        System.err.println("[ALERTA] -> Selección no válida.");
+		        break;
+		
+		
 			
 		}
 			

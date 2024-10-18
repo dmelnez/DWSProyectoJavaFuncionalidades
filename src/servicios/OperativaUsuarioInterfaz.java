@@ -25,6 +25,6 @@ public interface OperativaUsuarioInterfaz {
 	 * @param listaUsuarios
 	 * @author dmn - 10/10/2024
 	 */
-	public void modDatosUsu(List<UsuariosDtos>listaUsuarios);
+	public void modDatosUsu(List<UsuariosDtos>listaUsuarios, Connection conexionGenerada);
 	
 }

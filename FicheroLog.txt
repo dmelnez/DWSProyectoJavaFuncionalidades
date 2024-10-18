@@ -68,3 +68,31 @@ Seleccion -> Alta nuevo club.
 Seleccion -> Baja nuevo club.
 Seleccion -> Alta nuevo usuario.
 Seleccion -> Baja nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Baja nuevo club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Baja nuevo club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.
+Seleccion -> Modificacion club.

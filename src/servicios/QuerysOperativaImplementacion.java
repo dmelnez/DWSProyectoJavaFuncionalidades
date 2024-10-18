@@ -131,11 +131,55 @@ public ArrayList<Long> seleccionIdUsuarios(Connection conexionGenerada) {
 	
 }
 
-public void modificarUsuario(Connection conexionGenerada, String dniUsuario, String campoAModificar){
+public void modificarUsuario(Connection conexionGenerada, String nuevoValor, String campoAModificar, String dniUsuario){
 	
+
+	 PreparedStatement declaracionSQL = null;
+
+	    // Validar campoAModificar
+	    if (!isCampoValido(campoAModificar)) {
+	        System.err.println("[ERROR] Nombre de campo no válido: " + campoAModificar);
+	        return;
+	    }
+
+	    try {
+	        // Se construye la consulta SQL
+	        String query = "UPDATE \"sch_moteros\".\"Usuarios\" SET " + campoAModificar.toString() + " = ? WHERE dni_usuario = ?";
+	        declaracionSQL = conexionGenerada.prepareStatement(query);
+	        
+	        // Establece los parámetros
+	        declaracionSQL.setString(1, nuevoValor); // Nuevo valor para el campo especificado
+	        declaracionSQL.setString(2, dniUsuario); // DNI para filtrar
+	        
+	        // Ejecuta la consulta
+	        int filasAfectadas = declaracionSQL.executeUpdate();
+	        
+	        // Imprimir el resultado
+	        if (filasAfectadas > 0) {
+	            System.out.println("[INFORMACIÓN-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] Campo " + campoAModificar + " actualizado exitosamente para el usuario con DNI " + dniUsuario + ".");
+	        } else {
+	            System.out.println("[INFORMACIÓN-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] No se encontró un usuario con DNI " + dniUsuario + ".");
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("[ERROR-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] Error generando o ejecutando la declaración SQL: " + e);
+	    } finally {
+	        // Cerrar recursos
+	        if (declaracionSQL != null) {
+	            try {
+	                declaracionSQL.close();
+	            } catch (SQLException e) {
+	                System.err.println("[ERROR-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] Error cerrando la declaración SQL: " + e);
+	            }
+	        }
+	    }
 	
-	
-	
+}
+
+//Método para validar el campo
+private boolean isCampoValido(String campo) {
+ // Aquí puedes agregar la lógica para validar el campo
+ // Ejemplo simple:
+ return campo.equals("nombre") || campo.equals("apellido") || campo.equals("otroCampo"); // Agrega más campos según sea necesario
 }
 
 ///////////////////////////////////////////////////////////////////////////////////
