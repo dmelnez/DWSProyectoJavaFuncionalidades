@@ -65,6 +65,7 @@ public interface QuerysOperativaInterfaz {
 	public void eliminarClub(Connection conexionGenerada, String clubAEliminar);
 	
 	
+	public void modificarClubs(Connection conexionGenerada, String nuevoValor, String campoAModificar, String aliasClub);	
 	
 
 }

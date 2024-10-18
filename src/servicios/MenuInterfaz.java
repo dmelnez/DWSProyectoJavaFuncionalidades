@@ -16,4 +16,7 @@ public interface MenuInterfaz {
 	 * @author dmn 101024
 	 */
 	public int menuModUsuario();
+	
+	
+	public int menuModClubs();
 }

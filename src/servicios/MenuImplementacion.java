@@ -72,6 +72,14 @@ public class MenuImplementacion implements MenuInterfaz {
 		return seleccionUsu;
 	}
 	
+	
+	public int menuModClubs() {
+		System.out.println("¿Que desea modificar?");
+		System.out.println("[0] -> Subir un menu.");
+		System.out.println("[1] -> Nombre.");
+		int seleccionUsu = sc.nextInt();
+		return seleccionUsu;
+	}
 
 	
 }

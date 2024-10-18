@@ -8,6 +8,8 @@ import java.util.List;
 import java.util.Random;
 import java.util.Scanner;
 
+import org.postgresql.translation.messages_bg;
+
 import dtos.ClubsDtos;
 import dtos.UsuariosDtos;
 
@@ -15,6 +17,7 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 
 	Scanner sc = new Scanner(System.in);
 	QuerysOperativaInterfaz qy = new QuerysOperativaImplementacion();
+	MenuInterfaz me = new MenuImplementacion();
 	
 	public void altaClub(List<ClubsDtos>listaClubs, Connection conexionGenerada) {
 		
@@ -110,38 +113,34 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 		System.out.println("Alias club: ");
 		String aliasClub = sc.next();
 		qy.eliminarClub(conexion, aliasClub);
-		try {
-			
-			
-			/*for (ClubsDtos club : listaClubs) {
-				if(club.getAliasClub().equals(aliasClub)) {
-					
-					listaClubs.remove(club);
-					System.out.println("Se ha elimina el club");
-					
-				}
-			}*/
-		} catch (Exception e) {
-			// TODO: handle exception
-		}
-		
 		
 		
 	}
 	
 	
-	public void modDatosClub(List<ClubsDtos>listaClubs) {
+	public void modDatosClub(List<ClubsDtos>listaClubs, Connection conexion) {
+		
 		
 		System.out.println("Alias club: ");
 		String aliasClub = sc.next();
 		
-		for (ClubsDtos club : listaClubs) {
-			if(club.getAliasClub() == aliasClub) {
+	
+		String campoAModificar;
+		int seleccionUsu = me.menuModClubs();
+		
+		switch(seleccionUsu) {
+		
+			case 0:
 				
-				System.out.println("Nombre (Nuevo)");
-				club.setNombreClub(sc.next());
+			break;
+			
+			case 1:
+				campoAModificar = "nombre_club";
+				System.out.println("Nombre Nuevo");
+				String nuevoNombre = sc.next();
+				qy.modificarClubs(conexion, nuevoNombre, campoAModificar, aliasClub);
 				
-			}
+				break;
 		}
 		
 		

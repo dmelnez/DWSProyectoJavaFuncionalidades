@@ -101,7 +101,7 @@ public class Inicio {
 					System.out.println("Modificacion club.");
 					mensajeLog = "Seleccion -> Modificacion club.";
 					fi.ficheroLog(mensajeLog);
-					opClub.modDatosClub(listaClubs);
+					opClub.modDatosClub(listaClubs, conexion);
 					break;
 				case 6:
 					System.out.println("Modificacion usuario.");

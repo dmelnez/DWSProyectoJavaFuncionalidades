@@ -26,5 +26,5 @@ public interface OperativaClubInterfaz {
 	 * @param listaUsuarios
 	 * @author dmn - 10/10/2024
 	 */
-	public void modDatosClub(List<ClubsDtos>listaClubs);
+	public void modDatosClub(List<ClubsDtos>listaClubs, Connection conexion);
 }

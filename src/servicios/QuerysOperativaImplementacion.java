@@ -136,15 +136,9 @@ public void modificarUsuario(Connection conexionGenerada, String nuevoValor, Str
 
 	 PreparedStatement declaracionSQL = null;
 
-	    // Validar campoAModificar
-	    if (!isCampoValido(campoAModificar)) {
-	        System.err.println("[ERROR] Nombre de campo no válido: " + campoAModificar);
-	        return;
-	    }
-
 	    try {
 	        // Se construye la consulta SQL
-	        String query = "UPDATE \"sch_moteros\".\"Usuarios\" SET " + campoAModificar.toString() + " = ? WHERE dni_usuario = ?";
+	        String query = "UPDATE \"sch_moteros\".\"Usuarios\" SET " + campoAModificar + " = ? WHERE dni_usuario = ?";
 	        declaracionSQL = conexionGenerada.prepareStatement(query);
 	        
 	        // Establece los parámetros
@@ -175,12 +169,6 @@ public void modificarUsuario(Connection conexionGenerada, String nuevoValor, Str
 	
 }
 
-//Método para validar el campo
-private boolean isCampoValido(String campo) {
- // Aquí puedes agregar la lógica para validar el campo
- // Ejemplo simple:
- return campo.equals("nombre") || campo.equals("apellido") || campo.equals("otroCampo"); // Agrega más campos según sea necesario
-}
 
 ///////////////////////////////////////////////////////////////////////////////////
 
@@ -295,6 +283,45 @@ try {
 	
 }
 
+
+
+public void modificarClubs(Connection conexionGenerada, String nuevoValor, String campoAModificar, String aliasClub){
+	
+
+	 PreparedStatement declaracionSQL = null;
+
+	    try {
+	        // Se construye la consulta SQL
+	        String query = "UPDATE \"sch_moteros\".\"Clubs\" SET " + campoAModificar + " = ? WHERE alias_club = ?";
+	        declaracionSQL = conexionGenerada.prepareStatement(query);
+	        
+	        // Establece los parámetros
+	        declaracionSQL.setString(1, nuevoValor); // Nuevo valor para el campo especificado
+	        declaracionSQL.setString(2, aliasClub); // DNI para filtrar
+	        
+	        // Ejecuta la consulta
+	        int filasAfectadas = declaracionSQL.executeUpdate();
+	        
+	        // Imprimir el resultado
+	        if (filasAfectadas > 0) {
+	            System.out.println("[INFORMACIÓN-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] Campo " + campoAModificar + " actualizado exitosamente para el usuario con DNI " + aliasClub + ".");
+	        } else {
+	            System.out.println("[INFORMACIÓN-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] No se encontró un usuario con DNI " + aliasClub + ".");
+	        }
+	    } catch (SQLException e) {
+	        System.err.println("[ERROR-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] Error generando o ejecutando la declaración SQL: " + e);
+	    } finally {
+	        // Cerrar recursos
+	        if (declaracionSQL != null) {
+	            try {
+	                declaracionSQL.close();
+	            } catch (SQLException e) {
+	                System.err.println("[ERROR-ConsultasPostgresqlImplementacion-actualizarCampoUsuario] Error cerrando la declaración SQL: " + e);
+	            }
+	        }
+	    }
+	
+}
 
 ///////////////////////////////////////////////////////////////////////////////////
 
