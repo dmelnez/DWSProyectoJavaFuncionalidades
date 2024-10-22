@@ -112,3 +112,11 @@ Seleccion -> Alta nuevo club.
 Seleccion -> Modificacion club.
 Seleccion -> Modificacion club.
 Seleccion -> Modificacion club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo usuario.

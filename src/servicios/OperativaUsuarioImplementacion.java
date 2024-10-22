@@ -1,8 +1,18 @@
 package servicios;
 
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 import java.util.Scanner;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+
+import java.awt.SystemTray;
+import java.security.AlgorithmConstraints;
+import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 import java.sql.Connection;
 import dtos.UsuariosDtos;
 
@@ -12,7 +22,10 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 	MenuInterfaz me = new MenuImplementacion();
 	Scanner sc = new Scanner(System.in);
 	QuerysOperativaInterfaz qy = new QuerysOperativaImplementacion();
+	
 
+	private SecretKey secretKey;
+	
 	public void altaUsuario(List<UsuariosDtos>listaUsuarios, Connection conexionGenerada) {
 		
 	
@@ -62,6 +75,40 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 		
 		System.out.println("Email:");
 		nuevoUsuario.setEmail_usuario(sc.next());
+		
+		boolean esValidadoPass = false;
+		
+		do {
+			System.out.println("Contraseña: ");
+			String pass1 = sc.next();
+			
+			
+			System.out.println("Valida contraseña: ");
+			String pass2 = sc.next();
+
+			if (pass1.equals(pass2)) {
+				
+				System.out.println("Contraseña validada");
+				
+				try {
+					// Validar el codigo de encriptacion de contraseña
+					String contraseniaEncriptada = encriptarPassword(pass2);
+					
+					System.out.println(contraseniaEncriptada);
+					nuevoUsuario.setpassword(contraseniaEncriptada);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+				
+				
+				
+				
+				esValidadoPass = true;
+				break;
+			}
+			
+			
+		} while (!esValidadoPass);
 		
 		qy.insertUsuariosAlta(conexionGenerada, nuevoUsuario);
 		
@@ -208,7 +255,46 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 			
 	}
 	
+///////////////////////////////////////////////////////////////////////////////////////////////////
 	
+/*
+ * Creacion de encriptacion de contraseña
+ * */
+
+	private String encriptarPassword(String contrasena) {
+
+		 try {
+
+	            MessageDigest digest = MessageDigest.getInstance("SHA-256");
+
+	            byte[] hash = digest.digest(contrasena.getBytes());
+
+	            StringBuilder hexString = new StringBuilder();
+
+
+	            for (byte b : hash) {
+
+	                String hex = String.format("%02x", b); // Formato hexadecimal simplificado
+
+	                hexString.append(hex);
+
+	            }
+
+
+	            return hexString.toString();
+
+	        } catch (NoSuchAlgorithmException e) {
+
+	            throw new RuntimeException(e);
+
+	        }
+
+		
+
+	}
+	
+///////////////////////////////////////////////////////////////////////////////////////////////////
+
 	
 
 	

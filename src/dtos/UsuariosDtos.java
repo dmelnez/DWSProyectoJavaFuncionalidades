@@ -21,8 +21,10 @@ public class UsuariosDtos {
 
 	String direccion_usuario = "aaaaa";
 	
+	String password  = "aaaaa";
+	
 	public UsuariosDtos(long id_usuarios, String nombre_usuarioString, String apellidos_usuarioString, String dni_usuario,
-			String telefono_usuario, String email_usuario, String direccion_usuario) {
+			String telefono_usuario, String email_usuario, String direccion_usuario, String password ) {
 		super();
 		this.id_usuarios = id_usuarios;
 		this.nombre_usuarioString = nombre_usuarioString;
@@ -31,6 +33,7 @@ public class UsuariosDtos {
 		this.telefono_usuario = telefono_usuario;
 		this.email_usuario = email_usuario;
 		this.direccion_usuario = direccion_usuario;
+		this.password = password;
 		
 	}
 
@@ -120,6 +123,16 @@ public class UsuariosDtos {
 
 	public void setDireccion_usuario(String direccion_usuario) {
 		this.direccion_usuario = direccion_usuario;
+	}
+	
+	public String getpassword() {
+		return password;
+	}
+
+
+
+	public void setpassword(String password) {
+		this.password = password;
 	}
 
 

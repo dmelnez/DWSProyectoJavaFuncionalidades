@@ -29,7 +29,7 @@ public void insertUsuariosAlta(Connection conexionGenerada,UsuariosDtos usuarioN
 
 	try {
 	    // Se abre una declaración
-	    String query = "INSERT INTO \"sch_moteros\".\"Usuarios\" (id, nombre_usuario, apellidos_usuarioo, dni_usuario, email_usuario, direccion_usuario, telefono_usuario) VALUES (?,?, ?, ?, ?, ?, ?)";
+	    String query = "INSERT INTO \"sch_moteros\".\"Usuarios\" (id, nombre_usuario, apellidos_usuarioo, dni_usuario, email_usuario, direccion_usuario, telefono_usuario, password) VALUES (?,?, ?, ?, ?, ?, ?, ?)";
 	      
 	    	declaracionSQL = conexionGenerada.prepareStatement(query);
 
@@ -41,6 +41,7 @@ public void insertUsuariosAlta(Connection conexionGenerada,UsuariosDtos usuarioN
 		    declaracionSQL.setString(5, usuarioNuevo.getEmail_usuario());
 		    declaracionSQL.setString(6, usuarioNuevo.getDireccion_usuario());
 		    declaracionSQL.setString(7, usuarioNuevo.getTelefono_usuario());
+		    declaracionSQL.setString(8, usuarioNuevo.getpassword());
 
 		    // Ejecuta la consulta
 		    resultadoConsulta = declaracionSQL.executeUpdate();
