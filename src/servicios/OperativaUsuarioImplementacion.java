@@ -92,8 +92,7 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 				
 				try {
 					// Validar el codigo de encriptacion de contraseña
-					String contraseniaEncriptada = encriptarPassword(pass2);
-					
+					String contraseniaEncriptada = Util.EncriptarPassword.encriptarPassword(pass2);
 					System.out.println(contraseniaEncriptada);
 					nuevoUsuario.setpassword(contraseniaEncriptada);
 				} catch (Exception e) {
@@ -256,46 +255,7 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 	}
 	
 ///////////////////////////////////////////////////////////////////////////////////////////////////
-	
-/*
- * Creacion de encriptacion de contraseña
- * */
 
-	private String encriptarPassword(String contrasena) {
-
-		 try {
-
-	            MessageDigest digest = MessageDigest.getInstance("SHA-256");
-
-	            byte[] hash = digest.digest(contrasena.getBytes());
-
-	            StringBuilder hexString = new StringBuilder();
-
-
-	            for (byte b : hash) {
-
-	                String hex = String.format("%02x", b); // Formato hexadecimal simplificado
-
-	                hexString.append(hex);
-
-	            }
-
-
-	            return hexString.toString();
-
-	        } catch (NoSuchAlgorithmException e) {
-
-	            throw new RuntimeException(e);
-
-	        }
-
-		
-
-	}
-	
-///////////////////////////////////////////////////////////////////////////////////////////////////
-
-	
 
 	
 }

@@ -19,6 +19,8 @@ public class MenuImplementacion implements MenuInterfaz {
 		System.out.println("[4] -> Baja usuario.");
 		System.out.println("[5] -> Modificacion club.");
 		System.out.println("[6] -> Modificacion usuario.");
+		System.out.println("[7] -> Acceso usuario.");
+		System.out.println("[8] -> Acceso club.");
 		seleccionUsuario = sc.nextInt();
 		
 		return seleccionUsuario;
@@ -80,6 +82,9 @@ public class MenuImplementacion implements MenuInterfaz {
 		int seleccionUsu = sc.nextInt();
 		return seleccionUsu;
 	}
+	
+	
+	
 
 	
 }
