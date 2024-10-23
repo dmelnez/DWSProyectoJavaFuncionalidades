@@ -17,6 +17,9 @@ public class ClubsDtos {
 	
 	String codigoID = "aaaaa";
 	
+	String password = "aaaaa";
+	
+
 
 	public long getId() {
 		return id;
@@ -58,14 +61,22 @@ public class ClubsDtos {
 		this.codigoID = codigoID;
 	}
 
-	
-	public ClubsDtos(long id, String nombreClub, long idMiembro, String aliasClub,String codigoID ) {
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public ClubsDtos(long id, String nombreClub, long idMiembro, String aliasClub,String codigoID, String password ) {
 		super();
 		this.id = id;
 		this.nombreClub = nombreClub;
 		this.idMiembro = idMiembro;
 		this.aliasClub = aliasClub;
 		this.codigoID = codigoID;
+		this.password = password;
 	}
 
 	public ClubsDtos() {

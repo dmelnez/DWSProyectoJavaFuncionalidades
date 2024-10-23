@@ -121,3 +121,21 @@ Seleccion -> Alta nuevo usuario.
 Seleccion -> Alta nuevo usuario.
 Seleccion -> Alta nuevo usuario.
 Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo club.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo club.
+Seleccion -> Alta nuevo club.
+Seleccion -> Acceso usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Alta nuevo club.
+Seleccion -> Acceso usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Acceso usuario.
+Seleccion -> Alta nuevo usuario.
+Seleccion -> Alta nuevo club.
+Seleccion -> Acceso club.

@@ -25,8 +25,7 @@ import servicios.QuerysOperativaInterfaz;
 public class Inicio {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-		// TODO Auto-generated method stub
+
 		List<UsuariosDtos>listaUsuarios = new ArrayList<UsuariosDtos>();
 		List<ClubsDtos>listaClubs = new ArrayList<ClubsDtos>();
 		
@@ -38,17 +37,13 @@ public class Inicio {
 		MenuInterfaz me = new MenuImplementacion();
 
 		ConexionBaseDatosPostgresqlInterfaz cpi = new ConexionBaseDatosPostgresqlImplementacion();
-		//ConsultasPostgresqlInterfaz consultaspi = new ConsultasPostgresqlImplementacion();
 		
 		try {
 			Connection conexion = cpi.generaConexion();
 			
 			if(conexion != null) {
 				System.out.println("CONEXION ESTABLECIDA");
-				//qy.insertarusuario(conexion);
-				//qy.listaTodosUsuarios(conexion, listaUsuarios);
-				//qy.listaTodosClubs(conexion, listaClubs);
-				//qy.seleccionIdUsuarios(conexion);
+				
 				}
 			
 			
@@ -108,6 +103,19 @@ public class Inicio {
 					mensajeLog = "Seleccion -> Modificacion club.";
 					fi.ficheroLog(mensajeLog);
 					opUsu.modDatosUsu(listaUsuarios, conexion);
+					break;
+				case 7:
+					System.out.println("Acceso usuario.");
+					mensajeLog = "Seleccion -> Acceso usuario.";
+					fi.ficheroLog(mensajeLog);
+					opUsu.accesoUsuario(conexion);
+					break;
+				case 8:
+					System.out.println("Acceso club.");
+					mensajeLog = "Seleccion -> Acceso club.";
+					fi.ficheroLog(mensajeLog);
+					opClub.accesoClub(conexion);
+					
 					break;
 				default:
 					System.err.println("[ALERTA] -> Seleccion no valida.");

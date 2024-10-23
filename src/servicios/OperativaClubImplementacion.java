@@ -67,6 +67,36 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 			}
 		}
 		
+	boolean esValidadoPass = false;
+		
+		do {
+			System.out.println("Contraseña: ");
+			String pass1 = sc.next();
+			
+			
+			System.out.println("Valida contraseña: ");
+			String pass2 = sc.next();
+
+			if (pass1.equals(pass2)) {
+				
+				System.out.println("Contraseña validada");
+				
+				try {
+					// Validar el codigo de encriptacion de contraseña
+					String contraseniaEncriptada = Util.EncriptarPassword.encriptarPassword(pass2);
+					System.out.println(contraseniaEncriptada);
+					nuevoClub.setPassword(contraseniaEncriptada);
+				} catch (Exception e) {
+					// TODO: handle exception
+				}
+					
+				esValidadoPass = true;
+				break;
+			}
+			
+			
+		} while (!esValidadoPass);
+		
 		qy.insertClubsAlta(conexionGenerada, nuevoClub);
 		
 		nuevoClub.setAliasClub(aliasClub);
@@ -79,6 +109,7 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 			System.out.println(clubsDtos.getIdMiembro());
 			System.out.println(clubsDtos.getAliasClub());
 			System.out.println(clubsDtos.getCodigoID());
+			System.out.println(clubsDtos.getPassword());
 		}
 		
 	}
@@ -144,5 +175,25 @@ public class OperativaClubImplementacion implements OperativaClubInterfaz {
 		}
 		
 		
+	}
+	
+	
+	public void accesoClub(Connection conexionGenerada) {
+		System.out.println("Alias: ");
+		String alias = sc.next();
+		
+		System.out.println("Contraseña: ");
+		String password = sc.next();
+		
+		String contraseniaEncriptada = Util.EncriptarPassword.encriptarPassword(password);
+		
+		System.out.println(alias);
+		System.out.println(password);
+		System.out.println(contraseniaEncriptada);
+
+		if(qy.accesoUsuario(conexionGenerada, alias, contraseniaEncriptada)) {
+			System.out.println("El usuario si existe");
+		}
+
 	}
 }

@@ -27,4 +27,6 @@ public interface OperativaUsuarioInterfaz {
 	 */
 	public void modDatosUsu(List<UsuariosDtos>listaUsuarios, Connection conexionGenerada);
 	
+	public void accesoUsuario(Connection conexionGenerada);
+	
 }

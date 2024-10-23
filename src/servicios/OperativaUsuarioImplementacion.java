@@ -254,6 +254,25 @@ public class OperativaUsuarioImplementacion implements OperativaUsuarioInterfaz 
 			
 	}
 	
+	public void accesoUsuario(Connection conexionGenerada) {
+		System.out.println("Email: ");
+		String email = sc.next();
+		
+		System.out.println("Contraseña: ");
+		String password = sc.next();
+		
+		String contraseniaEncriptada = Util.EncriptarPassword.encriptarPassword(password);
+		
+		System.out.println(email);
+		System.out.println(password);
+		System.out.println(contraseniaEncriptada);
+
+		if(qy.accesoUsuario(conexionGenerada, email, contraseniaEncriptada)) {
+			System.out.println("El usuario si existe");
+		}
+
+	}
+	
 ///////////////////////////////////////////////////////////////////////////////////////////////////
 
 

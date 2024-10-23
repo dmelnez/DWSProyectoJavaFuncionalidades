@@ -27,4 +27,6 @@ public interface OperativaClubInterfaz {
 	 * @author dmn - 10/10/2024
 	 */
 	public void modDatosClub(List<ClubsDtos>listaClubs, Connection conexion);
+	
+	public void accesoClub(Connection conexionGenerada);
 }

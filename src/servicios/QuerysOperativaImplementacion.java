@@ -171,6 +171,47 @@ public void modificarUsuario(Connection conexionGenerada, String nuevoValor, Str
 }
 
 
+public boolean accesoUsuario(Connection conexionGenerada, String emailUsu, String passwordUsu) {
+	
+
+	 PreparedStatement declaracionSQL = null;
+	 boolean esExistente = false;
+	 try {
+		    // Se construye la consulta SQL
+		    String query = "SELECT email_usuario, password FROM \"sch_moteros\".\"Usuarios\" WHERE email_usuario = ? AND password = ?";
+		    declaracionSQL = conexionGenerada.prepareStatement(query);
+		    
+		    // Establece los parámetros
+		    declaracionSQL.setString(1, emailUsu); // emailUsu debe ser un string válido
+		    declaracionSQL.setString(2, passwordUsu); // passwordUsu debe ser un string válido
+		    
+		    // Ejecuta la consulta
+		    ResultSet resultado = declaracionSQL.executeQuery();
+		    
+		    // Imprimir el resultado
+		    if (resultado.next()) {
+		        System.out.println("[INFORMACIÓN] El usuario existe: " + resultado.getString("email_usuario"));
+		        esExistente = true;
+		    } else {
+		        System.out.println("[INFORMACIÓN] El usuario no existe");
+		    }
+		} catch (SQLException e) {
+		    System.err.println("[ERROR] Error generando o ejecutando la declaración SQL: " + e);
+		} finally {
+		    // Cerrar recursos
+		    if (declaracionSQL != null) {
+		        try {
+		            declaracionSQL.close();
+		        } catch (SQLException e) {
+		            System.err.println("[ERROR] Error cerrando la declaración SQL: " + e);
+		        }
+		    }
+		}
+
+		return esExistente;
+}
+
+
 ///////////////////////////////////////////////////////////////////////////////////
 
 
@@ -185,7 +226,7 @@ public void insertClubsAlta(Connection conexionGenerada, ClubsDtos nuevoClub) {
 
 	try {
 	    // Se abre una declaración
-	    String query = "INSERT INTO \"sch_moteros\".\"Clubs\" (id_club, nombre_club, miembros_club, alias_club, codigo_identificativo) VALUES (?, ?, ?, ?, ?)";
+	    String query = "INSERT INTO \"sch_moteros\".\"Clubs\" (id_club, nombre_club, miembros_club, alias_club, codigo_identificativo, password) VALUES (?, ?, ?, ?, ?, ?)";
 	      
 	    	declaracionSQL = conexionGenerada.prepareStatement(query);
 
@@ -195,6 +236,7 @@ public void insertClubsAlta(Connection conexionGenerada, ClubsDtos nuevoClub) {
 		    declaracionSQL.setLong(3, nuevoClub.getIdMiembro());
 		    declaracionSQL.setString(4, nuevoClub.getAliasClub());
 		    declaracionSQL.setString(5, nuevoClub.getCodigoID());
+		    declaracionSQL.setString(6, nuevoClub.getPassword());
 
 		    // Ejecuta la consulta
 		    resultadoConsulta = declaracionSQL.executeUpdate();
@@ -323,6 +365,50 @@ public void modificarClubs(Connection conexionGenerada, String nuevoValor, Strin
 	    }
 	
 }
+
+
+
+
+public boolean accesoClub(Connection conexionGenerada, String aliasClub, String passwordClub) {
+	
+
+	 PreparedStatement declaracionSQL = null;
+	 boolean esExistente = false;
+	 try {
+		    // Se construye la consulta SQL
+		    String query = "SELECT alias_club, password FROM \"sch_moteros\".\"Usuarios\" WHERE alias_club = ? AND password = ?";
+		    declaracionSQL = conexionGenerada.prepareStatement(query);
+		    
+		    // Establece los parámetros
+		    declaracionSQL.setString(1, aliasClub); // emailUsu debe ser un string válido
+		    declaracionSQL.setString(2, passwordClub); // passwordUsu debe ser un string válido
+		    
+		    // Ejecuta la consulta
+		    ResultSet resultado = declaracionSQL.executeQuery();
+		    
+		    // Imprimir el resultado
+		    if (resultado.next()) {
+		        System.out.println("[INFORMACIÓN] El club existe: " + resultado.getString("alias_club"));
+		        esExistente = true;
+		    } else {
+		        System.out.println("[INFORMACIÓN] El club no existe");
+		    }
+		} catch (SQLException e) {
+		    System.err.println("[ERROR] Error generando o ejecutando la declaración SQL: " + e);
+		} finally {
+		    // Cerrar recursos
+		    if (declaracionSQL != null) {
+		        try {
+		            declaracionSQL.close();
+		        } catch (SQLException e) {
+		            System.err.println("[ERROR] Error cerrando la declaración SQL: " + e);
+		        }
+		    }
+		}
+
+		return esExistente;
+}
+
 
 ///////////////////////////////////////////////////////////////////////////////////
 

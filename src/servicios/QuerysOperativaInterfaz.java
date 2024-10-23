@@ -55,6 +55,8 @@ public interface QuerysOperativaInterfaz {
 	 */
 	public ArrayList<Long> seleccionIdClubs(Connection conexionGenerada);
 	
+	public boolean accesoUsuario(Connection conexionGenerada, String emailUsu, String passwordUsu);
+	
 	
 	/**
 	 * Metodo encargado de solicitar el aliasClub, con el que se eliminara el club correspondiente.
@@ -68,4 +70,7 @@ public interface QuerysOperativaInterfaz {
 	public void modificarClubs(Connection conexionGenerada, String nuevoValor, String campoAModificar, String aliasClub);	
 	
 
+	public boolean accesoClub(Connection conexionGenerada, String aliasClub, String passwordClub);
+
+	
 }
